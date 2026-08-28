@@ -29,7 +29,6 @@ header {
   z-index: 10;
   background: rgba(245, 245, 247, 0.72);
   backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 .nav {
