@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Общая раскладка секций сайта (Projects/Skills/Contact) */
+section {
+  padding: 48px 0;
+}
+.sec-title {
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+}
+.sec-title span {
+  color: #6e6e73;
+}
+.bento {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* Появление секций и элементов по скроллу, см. useReveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.on {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Переход CRT между обычным режимом и терминалом */
+.crt-off {
+  animation: crtOff 0.45s ease-in forwards;
+}
+@keyframes crtOff {
+  0% {
+    transform: scaleY(1);
+    filter: brightness(1);
+  }
+  60% {
+    transform: scaleY(0.006);
+    filter: brightness(3);
+  }
+  100% {
+    transform: scaleY(0.006) scaleX(0);
+    filter: brightness(6);
+  }
+}
+.crt-on {
+  animation: crtOn 0.45s ease-out;
+}
+@keyframes crtOn {
+  0% {
+    transform: scaleY(0.006) scaleX(0);
+    filter: brightness(6);
+  }
+  40% {
+    transform: scaleY(0.006) scaleX(1);
+    filter: brightness(3);
+  }
+  100% {
+    transform: scaleY(1);
+    filter: brightness(1);
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-8px, 4px);
+  }
+  40% {
+    transform: translate(8px, -4px);
+  }
+  60% {
+    transform: translate(-6px, -3px);
+  }
+  80% {
+    transform: translate(6px, 3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .crt-off,
+  .crt-on,
+  .shake {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto;
+  }
+}
